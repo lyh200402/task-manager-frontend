@@ -1,0 +1,120 @@
+.header {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 42.5px;
+  background: #ffffff;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.5);
+  animation: fadeInDown 1s ease-out;
+}
+
+.logo {
+  font-family: "Nunito", sans-serif;
+  color: #3dbb3d;
+  font-weight: 900;
+  font-size: 2.5em;
+  letter-spacing: 1px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.auth-buttons {
+  display: flex;
+  margin-right: 20px;
+  position: absolute;
+  right: 20px;
+}
+
+.auth-btn {
+  outline: none;
+  margin-left: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background: #7ed386;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  animation: bounceIn 1s ease-out;
+}
+
+.auth-btn:hover {
+  background: #5ba373;
+}
+
+.sections-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+.section {
+  width: 250px;
+  margin: 20px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section:hover {
+  transform: translateY(-10px);
+  box-shadow: 2px 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.section-title {
+  font-family: "Montserrat", sans-serif;
+  color: #7ed386;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.more-btn {
+  display: inline-block;
+  margin-top: 20px;
+  text-decoration: none;
+  padding: 10px 20px;
+  background: #7ed386;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 1em;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
+
+.more-btn:hover {
+  background: #5ba373;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0%,
+  20%,
+  40%,
+  60%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
