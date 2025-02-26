@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useAppDispatch } from "../app/hooks.ts";
-import { addTask } from "../features/tasks/tasksSlice.ts";
+import { useAppDispatch } from "../app/hooks";
+import { addTask } from "../features/tasks/tasksSlice";
 import "../assets/styles/TaskForm.css";
 
 const TaskForm: React.FC = () => {

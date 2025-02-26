@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Task } from "../api/tasksApi";
-import { editTask } from "../features/tasks/tasksSlice.ts";
-import { useAppDispatch } from "../app/hooks.ts";
+import { editTask } from "../features/tasks/tasksSlice";
+import { useAppDispatch } from "../app/hooks";
 
 interface TagManagerProps {
   task: Task;

@@ -5,7 +5,7 @@ import {
   createTask,
   updateTask,
   deleteTask,
-} from "../../api/tasksApi.ts";
+} from "../../api/tasksApi";
 
 interface TasksState {
   tasks: Task[];

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import TaskList from "./components/TaskList.tsx";
-import TaskForm from "./components/TaskForm.tsx";
-import LoginComponent from "./components/LoginComponent.tsx";
-import RegisterComponent from "./components/RegisterComponent.tsx";
-import HomeComponent from "./components/HomeComponent.tsx";
+import TaskList from "./components/TaskList";
+import TaskForm from "./components/TaskForm";
+import LoginComponent from "./components/LoginComponent";
+import RegisterComponent from "./components/RegisterComponent";
+import HomeComponent from "./components/HomeComponent";
 import "./assets/styles/App.css";
 
 const TaskPage: React.FC = () => {

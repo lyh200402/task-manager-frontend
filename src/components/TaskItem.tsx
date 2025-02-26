@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { editTask } from "../features/tasks/tasksSlice.ts";
+import React, { useState, useCallback } from "react";
+import { editTask } from "../features/tasks/tasksSlice";
 import { Task } from "../api/tasksApi";
-import { useAppDispatch } from "../app/hooks.ts";
-import TaskDetails from "./TaskDetails.tsx";
-import TagManager from "./TagManager.tsx";
+import { useAppDispatch } from "../app/hooks";
+import TaskDetails from "./TaskDetails";
+import TagManager from "./TagManager";
 import "../assets/styles/TaskItem.css";
 
 interface TaskItemProps {
@@ -14,16 +14,16 @@ interface TaskItemProps {
 const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete }) => {
   const dispatch = useAppDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTask, setEditedTask] = useState(task);
+  const [editedTask, setEditedTask] = useState(() => task); // 使用 useMemo 初始值
 
-  const handleEdit = () => {
+  const handleEdit = useCallback(() => {
     setIsEditing(true);
-  };
+  }, []);
 
-  const handleSave = () => {
+  const handleSave = useCallback(() => {
     dispatch(editTask(editedTask));
     setIsEditing(false);
-  };
+  }, [dispatch, editedTask]);
 
   return (
     <div className="task-item">

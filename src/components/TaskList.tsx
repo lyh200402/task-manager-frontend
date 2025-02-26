@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../app/store.ts";
-import TaskItem from "./TaskItem.tsx";
-import { fetchTasks, removeTask } from "../features/tasks/tasksSlice.ts";
-import { useAppDispatch } from "../app/hooks.ts";
+import { RootState } from "../app/store";
+import TaskItem from "./TaskItem";
+import { fetchTasks, removeTask } from "../features/tasks/tasksSlice";
+import { useAppDispatch } from "../app/hooks";
 import "../assets/styles/TaskList.css";
 
 const TaskList: React.FC = () => {
@@ -15,19 +15,25 @@ const TaskList: React.FC = () => {
     dispatch(fetchTasks());
   }, [dispatch]);
 
-  const handleSort = (key) => {
+  const handleSort = useCallback((key: string) => {
     setSortKey(key);
-  };
+  }, []);
 
-  const sortedTasks = tasks.slice().sort((a, b) => {
-    if (sortKey === "dueDate") {
-      return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
-    } else if (sortKey === "priority") {
-      const priorityOrder = { 高: 3, 中: 2, 低: 1 };
-      return priorityOrder[b.priority] - priorityOrder[a.priority];
-    }
-    return 0;
-  });
+  const sortedTasks = useMemo(() => {
+    return tasks.slice().sort((a, b) => {
+      if (sortKey === "dueDate") {
+        return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime();
+      } else if (sortKey === "priority") {
+        const priorityOrder: { [key: string]: number } = {
+          高: 3,
+          中: 2,
+          低: 1,
+        };
+        return priorityOrder[b.priority] - priorityOrder[a.priority];
+      }
+      return 0;
+    });
+  }, [tasks, sortKey]);
 
   return (
     <div className="task-list">

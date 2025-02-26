@@ -1,0 +1,41 @@
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
+
+module.exports = {
+  entry: "./src/index.tsx",
+  mode: "development",
+  output: {
+    filename: "bundle.js",
+    path: path.resolve(__dirname, "dist"),
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"],
+  },
+  module: {
+    rules: [
+      {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+    }),
+    new BundleAnalyzerPlugin(),
+  ],
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "dist"),
+    },
+    compress: true,
+    port: 9000,
+  },
+};
