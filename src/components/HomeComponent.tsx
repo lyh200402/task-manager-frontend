@@ -12,7 +12,7 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
   isLogged,
 }) => {
   return (
-    <div>
+    <>
       <header className="header">
         <div className="logo">任务管理应用</div>
         <div className="auth-buttons">
@@ -39,8 +39,14 @@ const HomeComponent: React.FC<HomeComponentProps> = ({
             进入
           </Link>
         </section>
+        <section className="section">
+          <h2 className="section-title">团队任务</h2>
+          <Link to={"/teamTasks"} className="more-btn">
+            进入
+          </Link>
+        </section>
       </div>
-    </div>
+    </>
   );
 };
 

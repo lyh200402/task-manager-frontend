@@ -8,22 +8,23 @@ import "../assets/styles/TaskItem.css";
 
 interface TaskItemProps {
   task: Task;
-  onDelete: () => void;
+  onDelete: (teamId?: string) => void;
+  teamId?: string;
 }
 
-const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete }) => {
+const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, teamId }) => {
   const dispatch = useAppDispatch();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTask, setEditedTask] = useState(() => task); // 使用 useMemo 初始值
+  const [editedTask, setEditedTask] = useState(() => task);
 
   const handleEdit = useCallback(() => {
     setIsEditing(true);
   }, []);
 
   const handleSave = useCallback(() => {
-    dispatch(editTask(editedTask));
+    dispatch(editTask({ task: editedTask, teamId }));
     setIsEditing(false);
-  }, [dispatch, editedTask]);
+  }, [dispatch, editedTask, teamId]);
 
   return (
     <div className="task-item">
@@ -36,7 +37,11 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete }) => {
         />
       ) : (
         <>
-          <TaskDetails task={task} onEdit={handleEdit} onDelete={onDelete} />
+          <TaskDetails
+            task={task}
+            onEdit={handleEdit}
+            onDelete={() => onDelete(teamId)}
+          />
           <TagManager task={task} setTask={setEditedTask} dispatch={dispatch} />
         </>
       )}

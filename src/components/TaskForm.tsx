@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { useAppDispatch } from "../app/hooks";
 import { addTask } from "../features/tasks/tasksSlice";
 import "../assets/styles/TaskForm.css";
+import { Task } from "../api/tasksApi";
 
-const TaskForm: React.FC = () => {
+interface TaskFormProps {
+  teamId?: string;
+}
+
+const TaskForm: React.FC<TaskFormProps> = ({ teamId }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("高");
@@ -12,14 +17,14 @@ const TaskForm: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const newTask = {
-      id: Date.now(),
+    const newTask: Omit<Task, "_id"> = {
       title,
       description,
       priority,
       dueDate,
+      tags: [],
     };
-    dispatch(addTask(newTask));
+    dispatch(addTask({ task: newTask, teamId }));
     setTitle("");
     setDescription("");
     setPriority("高");

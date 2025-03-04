@@ -19,21 +19,27 @@ const initialState: TasksState = {
   error: null,
 };
 
-export const fetchTasks = createAsyncThunk("tasks/fetchTasks", async () => {
-  const tasks = await getTasks();
-  return tasks;
-});
+export const fetchTasks = createAsyncThunk(
+  "tasks/fetchTasks",
+  async (teamId?: string) => {
+    const tasks = await getTasks(teamId);
+    return tasks;
+  }
+);
 
-export const addTask = createAsyncThunk("tasks/addTask", async (task: Task) => {
-  const newTask = await createTask(task);
-  return newTask;
-});
+export const addTask = createAsyncThunk(
+  "tasks/addTask",
+  async ({ task, teamId }: { task: Task; teamId?: string }) => {
+    const newTask = await createTask(task, teamId);
+    return newTask;
+  }
+);
 
 export const editTask = createAsyncThunk(
   "tasks/editTask",
-  async (task: Task) => {
+  async ({ task, teamId }: { task: Task; teamId?: string }) => {
     if (task._id) {
-      const updatedTask = await updateTask(task._id, task);
+      const updatedTask = await updateTask(task._id, task, teamId);
       return updatedTask;
     }
     throw new Error("Task ID is required for editing.");
@@ -42,8 +48,8 @@ export const editTask = createAsyncThunk(
 
 export const removeTask = createAsyncThunk(
   "tasks/removeTask",
-  async (id: string) => {
-    await deleteTask(id);
+  async ({ id, teamId }: { id: string; teamId?: string }) => {
+    await deleteTask(id, teamId);
     return id;
   }
 );

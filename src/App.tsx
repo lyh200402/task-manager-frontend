@@ -1,23 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
-import TaskList from "./components/TaskList";
-import TaskForm from "./components/TaskForm";
 import LoginComponent from "./components/LoginComponent";
 import RegisterComponent from "./components/RegisterComponent";
 import HomeComponent from "./components/HomeComponent";
+import PersonalTaskPage from "./components/PersonalTaskPage";
+import TeamTaskPage from "./components/TeamTaskPage";
 import "./assets/styles/App.css";
-
-const TaskPage: React.FC = () => {
-  return (
-    <div>
-      <TaskForm />
-      <TaskList />
-    </div>
-  );
-};
 
 const App: React.FC = () => {
   const [isLogged, setIsLogged] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLogged(true);
+    }
+  }, []);
 
   const handleLogin = () => {
     setIsLogged(true);
@@ -29,7 +27,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       <Routes>
         <Route
           path="/"
@@ -44,10 +42,14 @@ const App: React.FC = () => {
         ></Route>
         <Route
           path="/myTasks"
-          element={isLogged ? <TaskPage /> : <Navigate to="/login" />}
+          element={isLogged ? <PersonalTaskPage /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/teamTasks"
+          element={isLogged ? <TeamTaskPage /> : <Navigate to="/login" />}
         ></Route>
       </Routes>
-    </div>
+    </>
   );
 };
 

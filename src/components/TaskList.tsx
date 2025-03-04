@@ -6,14 +6,18 @@ import { fetchTasks, removeTask } from "../features/tasks/tasksSlice";
 import { useAppDispatch } from "../app/hooks";
 import "../assets/styles/TaskList.css";
 
-const TaskList: React.FC = () => {
+interface TaskListProps {
+  teamId?: string;
+}
+
+const TaskList: React.FC<TaskListProps> = ({ teamId }) => {
   const tasks = useSelector((state: RootState) => state.tasks.tasks);
   const dispatch = useAppDispatch();
   const [sortKey, setSortKey] = useState("normal");
 
   useEffect(() => {
-    dispatch(fetchTasks());
-  }, [dispatch]);
+    dispatch(fetchTasks(teamId));
+  }, [dispatch, teamId]);
 
   const handleSort = useCallback((key: string) => {
     setSortKey(key);
@@ -35,6 +39,14 @@ const TaskList: React.FC = () => {
     });
   }, [tasks, sortKey]);
 
+  const handleDelete = (taskId: string) => {
+    if (teamId) {
+      dispatch(removeTask({ id: taskId, teamId }));
+    } else {
+      dispatch(removeTask({ id: taskId }));
+    }
+  };
+
   return (
     <div className="task-list">
       <h2 className="task-list-title">任务列表</h2>
@@ -50,7 +62,7 @@ const TaskList: React.FC = () => {
         <TaskItem
           key={task._id}
           task={task}
-          onDelete={() => dispatch(removeTask(task._id!))}
+          onDelete={() => handleDelete(task._id!)}
         />
       ))}
     </div>

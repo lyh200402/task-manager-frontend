@@ -25,6 +25,15 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
       ? "priority-medium"
       : "priority-low";
 
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
   if (onSave && onChange) {
     return (
       <div>
@@ -73,7 +82,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
       <p className={`task-priority ${priorityClass}`}>
         优先级: {task.priority}
       </p>
-      <p className="task-due-date">截止日期: {task.dueDate}</p>
+      <p className="task-due-date">截止日期: {formatDate(task.dueDate)}</p>
       <button className="edit-button" onClick={onEdit}>
         编辑
       </button>

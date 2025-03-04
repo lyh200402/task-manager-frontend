@@ -1,46 +1,47 @@
 .task-list {
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #FFFFFF;
-    border-radius: 8px;
-    box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
-    position: relative;
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .sort-button-wrap {
-    position: absolute;
-    right: 30px;
-    top: 36px;
+  position: absolute;
+  right: 30px;
+  top: 36px;
 }
 
 .task-list-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 36px;
-    color: #3FB6A8;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    margin-left: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  color: #3fb6a8;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 .sort-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-left: 10px;
-    transition: background 0.3s ease;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background 0.3s ease;
 }
 
 .sort-button {
-    background: linear-gradient(to right, #66bb6a, #43a047);
+  background: linear-gradient(to right, #66bb6a, #43a047);
 }
 
 .sort-button:hover {
-    background: linear-gradient(to right, #43a047, #388e3c);
+  background: linear-gradient(to right, #43a047, #388e3c);
 }

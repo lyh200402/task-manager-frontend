@@ -1,8 +1,9 @@
 .login-container {
+  box-sizing: border-box;
   width: 100%;
-  max-width: 400px;
   margin: 0 auto;
   padding: 20px;
+  max-width: 400px;
   background: #ffffff;
 }
 
@@ -29,7 +30,7 @@
 
 .login-form-input {
   box-sizing: border-box;
-  width: 400px;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ddd;
@@ -85,4 +86,23 @@
 
 .switch-button:hover {
   background: linear-gradient(to right, #43a047, #388e3c);
+}
+
+.register-login-container {
+  color: #3fb6a8;
+  width: 60%;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .register-login-container {
+    width: 100%;
+    margin: 50px 0;
+  }
 }

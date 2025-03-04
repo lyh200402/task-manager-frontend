@@ -7,9 +7,15 @@ interface TagManagerProps {
   task: Task;
   setTask: (task: Task) => void;
   dispatch: ReturnType<typeof useAppDispatch>;
+  teamId?: string;
 }
 
-const TagManager: React.FC<TagManagerProps> = ({ task, setTask, dispatch }) => {
+const TagManager: React.FC<TagManagerProps> = ({
+  task,
+  setTask,
+  dispatch,
+  teamId,
+}) => {
   const [isAddingTag, setIsAddingTag] = useState(false);
   const [newTag, setNewTag] = useState("");
 
@@ -31,7 +37,7 @@ const TagManager: React.FC<TagManagerProps> = ({ task, setTask, dispatch }) => {
       setTask(updatedTask);
       setNewTag("");
       setIsAddingTag(false);
-      dispatch(editTask(updatedTask));
+      dispatch(editTask({ task: updatedTask, teamId }));
     }
   };
 

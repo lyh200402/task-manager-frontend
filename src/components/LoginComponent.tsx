@@ -22,9 +22,13 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onLogin }) => {
         password,
       });
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("username", response.data.username);
+      localStorage.setItem("email", email);
+      localStorage.setItem("userId", response.data.userId);
       onLogin();
       navigate("/");
     } catch (error) {
+      console.log(error);
       setMessage("登录失败，请重试。");
     }
   };
