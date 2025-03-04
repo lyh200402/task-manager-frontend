@@ -18,7 +18,7 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onLogin }) => {
 
     try {
       const response = await axios.post(
-        "https://lyh-task-manager-b.vercel.app/login",
+        "https://task-manager-backend-kohl.vercel.app/login",
         {
           email,
           password,

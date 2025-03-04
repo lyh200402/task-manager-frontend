@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://lyh-task-manager-b.vercel.app/tasks";
+const API_URL = "https://task-manager-backend-kohl.vercel.app/tasks";
 
 interface AxiosConfig {
   headers: { Authorization: string };

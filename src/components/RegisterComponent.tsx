@@ -14,11 +14,14 @@ const RegisterComponent: React.FC = () => {
     e.preventDefault();
 
     try {
-      await axios.post("https://lyh-task-manager-b.vercel.app/register", {
-        username,
-        email,
-        password,
-      });
+      await axios.post(
+        "https://task-manager-backend-kohl.vercel.app/register",
+        {
+          username,
+          email,
+          password,
+        }
+      );
 
       navigate("/login");
     } catch (error) {

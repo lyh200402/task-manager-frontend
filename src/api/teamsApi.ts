@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const API_URL = "https://lyh-task-manager-b.vercel.app/teams";
-const JOIN_TEAM_URL = "https://lyh-task-manager-b.vercel.app/join-team";
+const API_URL = "https://task-manager-backend-kohl.vercel.app/teams";
+const JOIN_TEAM_URL = "https://task-manager-backend-kohl.vercel.app/join-team";
 
 const getAuthHeader = () => {
   return { headers: { Authorization: localStorage.getItem("token") || "" } };
