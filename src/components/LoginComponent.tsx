@@ -17,10 +17,13 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onLogin }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:5000/login", {
-        email,
-        password,
-      });
+      const response = await axios.post(
+        "https://lyh-task-manager-b.vercel.app/login",
+        {
+          email,
+          password,
+        }
+      );
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("username", response.data.username);
       localStorage.setItem("email", email);
