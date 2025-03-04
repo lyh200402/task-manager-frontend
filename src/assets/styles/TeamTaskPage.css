@@ -1,0 +1,9 @@
+.father {
+  display: flex;
+}
+.left {
+  width: 700px;
+}
+.right {
+  flex: 1;
+}

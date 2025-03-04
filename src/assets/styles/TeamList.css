@@ -1,0 +1,95 @@
+.team-list {
+  width: 100%;
+  max-width: 600px;
+  box-sizing: border-box;
+  margin: 20px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.team-list-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 36px;
+  color: #3fb6a8;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+
+.button-group-1 {
+  position: absolute;
+  right: 4%;
+  top: 30px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.button-group-2 {
+  position: absolute;
+  right: 5%;
+  bottom: 10%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.team-button {
+  padding: 10px 15px;
+  font-size: 16px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: linear-gradient(to right, #66bb6a, #43a047);
+  transition: background 0.3s ease;
+  margin-left: 20px;
+}
+
+.team-button:hover {
+  background: linear-gradient(to right, #43a047, #388e3c);
+}
+
+.delete-team {
+  background: linear-gradient(to right, #d32f2f, #c62828);
+}
+
+.delete-team:hover {
+  background: linear-gradient(to right, #c62828, #b71c1c);
+}
+.team-item {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 2px 5px 20px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.team-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  color: #3fb6a8;
+  margin-bottom: 10px;
+}
+
+.team-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 10px;
+}
+.team-members {
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  color: #3fb6a8;
+  margin-bottom: 10px;
+}
+.member-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
