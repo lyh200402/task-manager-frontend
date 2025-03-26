@@ -16,3 +16,5 @@
 - 前端：React, Redux, Axios, Webpack
 - 后端：Node.js, Express, Mongoose
 - 数据库：MongoDB
+
+练习git
