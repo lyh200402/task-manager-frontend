@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../app/store";
-import TeamCreateForm from "./TeamCreateForm";
-import TeamJoinForm from "./TeamJoinForm";
-import { useAppDispatch } from "../app/hooks";
-import { fetchTeams } from "../features/teams/teamsSlice";
-import "../assets/styles/TeamList.css";
+import React, { useState, useEffect, useMemo } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
+import TeamCreateForm from './TeamCreateForm';
+import TeamJoinForm from './TeamJoinForm';
+import { useAppDispatch } from '../app/hooks';
+import { fetchTeams } from '../features/teams/teamsSlice';
+import '../assets/styles/TeamList.css';
 
 interface TeamListProps {
   onFocus: (teamId: string) => void;
@@ -18,9 +18,11 @@ const TeamList: React.FC<TeamListProps> = ({ onFocus, onDelete }) => {
   const [isCreatingTeam, setIsCreatingTeam] = useState(false);
   const [isJoiningTeam, setIsJoiningTeam] = useState(false);
 
+  const memoizedTeams = useMemo(() => teams, [JSON.stringify(teams)]);
+
   useEffect(() => {
     dispatch(fetchTeams());
-  }, [dispatch, teams]);
+  }, [dispatch, memoizedTeams]);
 
   const toggleCreateTeam = () => {
     setIsCreatingTeam(!isCreatingTeam);
@@ -37,10 +39,10 @@ const TeamList: React.FC<TeamListProps> = ({ onFocus, onDelete }) => {
       <h2 className="team-list-title">团队列表</h2>
       <div className="button-group-1">
         <button className="team-button" onClick={toggleCreateTeam}>
-          {isCreatingTeam ? "取消" : "创建团队"}
+          {isCreatingTeam ? '取消' : '创建团队'}
         </button>
         <button className="team-button" onClick={toggleJoinTeam}>
-          {isJoiningTeam ? "取消" : "加入团队"}
+          {isJoiningTeam ? '取消' : '加入团队'}
         </button>
       </div>
       {isCreatingTeam && <TeamCreateForm />}
@@ -70,8 +72,11 @@ const TeamList: React.FC<TeamListProps> = ({ onFocus, onDelete }) => {
                   <div className="team-members">团队成员：</div>
                   {team.members &&
                     team.members.map((member) => (
-                      <div className="member-name" key={member._id}>
-                        {member.username}
+                      <div key={member._id} className="member-wrap">
+                        <div className="member-avatar">
+                          <img src={member.avatar} alt="Avatar" />
+                        </div>
+                        <div className="member-name">{member.username}</div>
                       </div>
                     ))}
                 </>

@@ -1,10 +1,10 @@
-import React, { useState, useCallback } from "react";
-import { editTask } from "../features/tasks/tasksSlice";
-import { Task } from "../api/tasksApi";
-import { useAppDispatch } from "../app/hooks";
-import TaskDetails from "./TaskDetails";
-import TagManager from "./TagManager";
-import "../assets/styles/TaskItem.css";
+import React, { useState, useCallback } from 'react';
+import { editTask } from '../features/tasks/tasksSlice';
+import { Task } from '../api/tasksApi';
+import { useAppDispatch } from '../app/hooks';
+import TaskDetails from './TaskDetails';
+import TagManager from './TagManager';
+import '../assets/styles/TaskItem.css';
 
 interface TaskItemProps {
   task: Task;
@@ -42,7 +42,12 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onDelete, teamId }) => {
             onEdit={handleEdit}
             onDelete={() => onDelete(teamId)}
           />
-          <TagManager task={task} setTask={setEditedTask} dispatch={dispatch} />
+          <TagManager
+            task={task}
+            setTask={setEditedTask}
+            dispatch={dispatch}
+            teamId={teamId}
+          />
         </>
       )}
     </div>

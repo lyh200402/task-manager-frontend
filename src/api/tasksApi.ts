@@ -1,6 +1,6 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "https://task-manager-backend-kohl.vercel.app/tasks";
+const API_URL = 'http://localhost:5000/tasks';
 
 interface AxiosConfig {
   headers: { Authorization: string };
@@ -8,7 +8,7 @@ interface AxiosConfig {
 }
 
 const getAuthHeader = (): AxiosConfig => {
-  return { headers: { Authorization: localStorage.getItem("token") || "" } };
+  return { headers: { Authorization: localStorage.getItem('token') || '' } };
 };
 
 export const getTasks = async (teamId?: string) => {

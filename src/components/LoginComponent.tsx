@@ -1,38 +1,36 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../assets/styles/LoginComponent.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../assets/styles/LoginComponent.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface LoginComponentProps {
   onLogin: () => void;
 }
 
 const LoginComponent: React.FC<LoginComponentProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://task-manager-backend-kohl.vercel.app/login",
-        {
-          email,
-          password,
-        }
-      );
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("username", response.data.username);
-      localStorage.setItem("email", email);
-      localStorage.setItem("userId", response.data.userId);
+      const response = await axios.post('http://localhost:5000/users/login', {
+        email,
+        password,
+      });
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('username', response.data.username);
+      localStorage.setItem('email', email);
+      localStorage.setItem('userId', response.data.userId);
+      localStorage.setItem('avatar', response.data.avatar);
       onLogin();
-      navigate("/");
+      navigate('/');
     } catch (error) {
       console.log(error);
-      setMessage("登录失败，请重试。");
+      setMessage('登录失败，请重试。');
     }
   };
 
@@ -74,8 +72,8 @@ const LoginComponent: React.FC<LoginComponentProps> = ({ onLogin }) => {
         {message && <p className="login-message">{message}</p>}
       </div>
       <p>
-        还没有账户？{" "}
-        <Link className="switch-button" to={"/register"}>
+        还没有账户？{' '}
+        <Link className="switch-button" to={'/register'}>
           注册
         </Link>
       </p>

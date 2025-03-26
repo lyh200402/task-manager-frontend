@@ -1,10 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
-const API_URL = "https://task-manager-backend-kohl.vercel.app/teams";
-const JOIN_TEAM_URL = "https://task-manager-backend-kohl.vercel.app/join-team";
+const API_URL = 'http://localhost:5000/teams';
+const JOIN_TEAM_URL = 'http://localhost:5000/teams/join-team';
 
 const getAuthHeader = () => {
-  return { headers: { Authorization: localStorage.getItem("token") || "" } };
+  return { headers: { Authorization: localStorage.getItem('token') || '' } };
 };
 
 export const getTeams = async () => {
@@ -37,7 +37,7 @@ export const joinTeamApi = async ({
   const response = await axios.post(
     JOIN_TEAM_URL,
     { name, user },
-    getAuthHeader()
+    getAuthHeader(),
   );
   return response.data;
 };
@@ -46,6 +46,7 @@ export interface User {
   _id: string;
   username: string;
   email: string;
+  avatar: string;
 }
 
 export interface UpdateTeam {

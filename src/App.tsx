@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import LoginComponent from "./components/LoginComponent";
-import RegisterComponent from "./components/RegisterComponent";
-import HomeComponent from "./components/HomeComponent";
-import PersonalTaskPage from "./components/PersonalTaskPage";
-import TeamTaskPage from "./components/TeamTaskPage";
-import "./assets/styles/App.css";
+import React, { useState, useEffect, lazy, Suspense } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import './assets/styles/App.css';
+
+// 懒加载组件
+const LoginComponent = lazy(() => import('./components/LoginComponent'));
+const RegisterComponent = lazy(() => import('./components/RegisterComponent'));
+const HomeComponent = lazy(() => import('./components/HomeComponent'));
+const PersonalTaskPage = lazy(() => import('./components/PersonalTaskPage'));
+const TeamTaskPage = lazy(() => import('./components/TeamTaskPage'));
+const ProfileComponent = lazy(() => import('./components/ProfileComponent'));
 
 const App: React.FC = () => {
   const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (token) {
       setIsLogged(true);
     }
@@ -23,33 +26,43 @@ const App: React.FC = () => {
 
   const handleLogout = () => {
     setIsLogged(false);
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
   };
 
+  const token = localStorage.getItem('token');
+  const isLoggedIn = !!token; // 直接根据 token 是否存在判断登录状态
+
+  console.log(token);
+  console.log(isLoggedIn);
+
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route
           path="/"
           element={
             <HomeComponent onLogout={handleLogout} isLogged={isLogged} />
           }
-        ></Route>
-        <Route path="/register" element={<RegisterComponent />}></Route>
+        />
+        <Route path="/register" element={<RegisterComponent />} />
         <Route
           path="/login"
           element={<LoginComponent onLogin={handleLogin} />}
-        ></Route>
+        />
         <Route
           path="/myTasks"
-          element={isLogged ? <PersonalTaskPage /> : <Navigate to="/login" />}
-        ></Route>
+          element={isLoggedIn ? <PersonalTaskPage /> : <Navigate to="/login" />}
+        />
         <Route
           path="/teamTasks"
-          element={isLogged ? <TeamTaskPage /> : <Navigate to="/login" />}
-        ></Route>
+          element={isLoggedIn ? <TeamTaskPage /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/profile"
+          element={isLoggedIn ? <ProfileComponent /> : <Navigate to="/login" />}
+        />
       </Routes>
-    </>
+    </Suspense>
   );
 };
 

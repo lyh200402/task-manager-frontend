@@ -1,26 +1,29 @@
-import React, { useState } from "react";
-import { useAppDispatch } from "../app/hooks";
-import { addTeam } from "../features/teams/teamsSlice";
-import { User } from "../api/teamsApi";
+import React, { useState } from 'react';
+import { useAppDispatch } from '../app/hooks';
+import { addTeam } from '../features/teams/teamsSlice';
+import { User } from '../api/teamsApi';
 
 const TeamCreateForm: React.FC = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
   const [members, setMembers] = useState<User[]>([]);
   const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const userId = localStorage.getItem("userId");
-    const username = localStorage.getItem("username") || "";
-    const email = localStorage.getItem("email") || "";
+    const userId = localStorage.getItem('userId');
+    const username = localStorage.getItem('username') || '';
+    const email = localStorage.getItem('email') || '';
+    const avatar = localStorage.getItem('avatar') || '';
 
     if (userId && username) {
       let user: User = {
         _id: userId,
+        avatar: avatar,
         username: username,
         email: email,
       };
+      console.log('avatar', avatar);
       const updatedMembers = [...members, user];
       setMembers(updatedMembers);
 
@@ -32,10 +35,10 @@ const TeamCreateForm: React.FC = () => {
       console.log(newTeam);
       dispatch(addTeam(newTeam));
     } else {
-      console.error("用户未登录");
+      console.error('用户未登录');
     }
-    setName("");
-    setDescription("");
+    setName('');
+    setDescription('');
   };
 
   return (

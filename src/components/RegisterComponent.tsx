@@ -1,31 +1,28 @@
-import React, { useState } from "react";
-import axios from "axios";
-import "../assets/styles/RegisterComponent.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import axios from 'axios';
+import '../assets/styles/RegisterComponent.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 const RegisterComponent: React.FC = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      await axios.post(
-        "https://task-manager-backend-kohl.vercel.app/register",
-        {
-          username,
-          email,
-          password,
-        }
-      );
+      await axios.post('http://localhost:5000/users/register', {
+        username,
+        email,
+        password,
+      });
 
-      navigate("/login");
+      navigate('/login');
     } catch (error) {
-      setMessage("注册失败，请重试。");
+      setMessage('注册失败，请重试。');
     }
   };
 
@@ -80,8 +77,8 @@ const RegisterComponent: React.FC = () => {
         {message && <p className="message-text">{message}</p>}
       </div>
       <p>
-        已有账户？{" "}
-        <Link className="switch-button" to={"/login"}>
+        已有账户？{' '}
+        <Link className="switch-button" to={'/login'}>
           登录
         </Link>
       </p>
